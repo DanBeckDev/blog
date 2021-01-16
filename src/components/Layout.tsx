@@ -1,10 +1,19 @@
-import Head from "next/head";
-import Navigation from "./Navigation";
+import { ThemeContext } from '@context/*';
+import Head from 'next/head';
+import { useContext } from 'react';
+
+import Navigation from './Navigation';
 
 type Props = {
   children: React.ReactNode;
 };
 export default function Layout({ children }: Props) {
+  const {
+    theme: {
+      layout: { spacing, breakpoints },
+    },
+  } = useContext(ThemeContext);
+
   return (
     <div className="root">
       <Head>
@@ -22,21 +31,22 @@ export default function Layout({ children }: Props) {
         {`
           .root {
             display: block;
-            padding: 4rem 0;
             box-sizing: border-box;
             height: 100%;
           }
-          main {
-            display: flex;
-            min-height: 100%;
+
+          nav {
+            padding: 1.5rem ${spacing.mobile.small};
           }
-          @media (min-width: 769px) {
-            .root {
-              display: flex;
-              flex: 1 0 auto;
+
+          @media (min-width: ${breakpoints.tablet.min}) {
+            nav {
+              padding: 2.9rem ${spacing.tablet.small};
             }
-            main {
-              flex: 1 0 auto;
+          }
+          @media (min-width: ${breakpoints.desktop.min}) {
+            nav {
+              padding: 4rem ${spacing.desktop.small};
             }
           }
         `}

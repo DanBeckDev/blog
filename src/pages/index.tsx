@@ -1,23 +1,20 @@
-import Layout from "../components/Layout";
-import BasicMeta from "../components/meta/BasicMeta";
-import OpenGraphMeta from "../components/meta/OpenGraphMeta";
-import TwitterCardMeta from "../components/meta/TwitterCardMeta";
-import { SocialList } from "../components/SocialList";
+import { Hero, Bio, RecentPosts } from '@components/*';
+import Layout from '../components/Layout';
+import BasicMeta from '../components/meta/BasicMeta';
+import OpenGraphMeta from '../components/meta/OpenGraphMeta';
+import TwitterCardMeta from '../components/meta/TwitterCardMeta';
 
 export default function Index() {
   return (
     <Layout>
-      <BasicMeta url={"/"} />
-      <OpenGraphMeta url={"/"} />
-      <TwitterCardMeta url={"/"} />
+      <BasicMeta url={'/'} />
+      <OpenGraphMeta url={'/'} />
+      <TwitterCardMeta url={'/'} />
+      <Hero />
       <div className="container">
         <div>
-          <h1>
-            Hi, We're Next.js & Netlify<span className="fancy">.</span>
-          </h1>
-          <span className="handle">@nextjs-netlify-blog</span>
-          <h2>A blog template with Next.js and Netlify.</h2>
-          <SocialList />
+          <Bio />
+          <RecentPosts />
         </div>
       </div>
       <style jsx>{`
@@ -26,7 +23,6 @@ export default function Index() {
           align-items: center;
           justify-content: center;
           flex: 1 1 auto;
-          padding: 0 1.5rem;
         }
         h1 {
           font-size: 2.5rem;

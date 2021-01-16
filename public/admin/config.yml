@@ -136,6 +136,9 @@ collections:
           displayFields:
             - "tags.*.name"
           valueField: "tags.*.slug"
+      - label: "Featured Image"
+          name: "thumbnail"
+          widget: "image"
       - label: "Body"
         name: "body"
         widget: "markdown"
