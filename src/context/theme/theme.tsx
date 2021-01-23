@@ -1,12 +1,12 @@
 import { createContext, PropsWithChildren, ReactElement } from 'react';
 import css from 'styled-jsx/css';
 
-const sharedAlternativeStyles = css.resolve`
+const sharedAlternativeStyles = `
   font-family: 'Roboto';
   letter-spacing: 0.17rem;
 `;
 
-const sharedHeadingStyles = css.resolve`
+const sharedHeadingStyles = `
   font-family: 'Roboto Condensed';
   font-weight: bold;
   letter-spacing: -0.17rem;
@@ -47,7 +47,7 @@ const themeConfig = {
     styles: {
       h1: `
         font-size: 4.883rem;
-        ${console.log(sharedHeadingStyles)}
+        ${sharedHeadingStyles}
       `,
       h2: `
         font-size: 3.906rem;
