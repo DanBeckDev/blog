@@ -1,10 +1,17 @@
 import { Hero, Bio, RecentPosts } from '@components/*';
+import config from 'lib/config';
+import { listPostContent, PostContent } from 'lib/posts';
+import { GetStaticProps } from 'next';
 import Layout from '../components/Layout';
 import BasicMeta from '../components/meta/BasicMeta';
 import OpenGraphMeta from '../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../components/meta/TwitterCardMeta';
 
-export default function Index() {
+type Props = {
+  posts: PostContent[];
+};
+
+export default function Index({ posts }: Props) {
   return (
     <Layout>
       <BasicMeta url={'/'} />
@@ -14,7 +21,7 @@ export default function Index() {
       <div className="container">
         <div>
           <Bio />
-          <RecentPosts />
+          <RecentPosts posts={posts} />
         </div>
       </div>
       <style jsx>{`
@@ -56,3 +63,12 @@ export default function Index() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = listPostContent(1, 4);
+  return {
+    props: {
+      posts,
+    },
+  };
+};

@@ -13,7 +13,8 @@ function themeToObject(themeStyles) {
   }, {});
 }
 
-export function Heading({ level, children }) {
+export function Heading({ level, children, ...otherProps }) {
+  const isLink = Object.keys(otherProps).length !== 0;
   const {
     theme: { styles },
   } = useContext(ThemeContext);
@@ -21,14 +22,26 @@ export function Heading({ level, children }) {
   function HeadingNoStyle({ level, children }): ReactElement {
     const themeStyles = styles[`h${level}`];
     const externalStyles = themeToObject(themeStyles);
+    const linkStyles = isLink
+      ? {
+          color: '#000',
+        }
+      : {};
 
     const CustomHeading = React.createElement(
       `h${level}`,
-      { style: { margin: 0, ...externalStyles } },
+      { style: { margin: 0, ...externalStyles, ...linkStyles } },
       children
     );
     return CustomHeading;
   }
 
+  if (isLink) {
+    return (
+      <a {...otherProps}>
+        <HeadingNoStyle level={level}>{children}</HeadingNoStyle>
+      </a>
+    );
+  }
   return <HeadingNoStyle level={level}>{children}</HeadingNoStyle>;
 }
